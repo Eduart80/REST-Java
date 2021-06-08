@@ -1,15 +1,26 @@
 package testCase;
 
 import WebDriver.Web;
+import io.restassured.response.ValidatableResponse;
+import okhttp3.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 
 public class getClass {
 
-    String token = "c6aef9e3a879687e044a91f99a7d4719319bc1cc598d93fd54cbd29de766346b";
+    String token = "sample key 1234567890";
 
     @Test
     public void testGet(){
-        String b = Web.getDriver().getCurrentUrl();
-        System.out.println(b);
+                given()
+                .param("id","2")
+                .when()
+                .get("https://gorest.co.in/public-api/users")
+                .then()
+                .assertThat().statusCode(200);
+        System.out.println(toString());
     }
 }
